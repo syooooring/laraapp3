@@ -9,8 +9,8 @@ class HelloController extends Controller
 {
   
    public function index()
-{
-    $date = ['msg'=>'これはコントローラから渡されたメッセージです'];
-    return view('hello.index', $date);
-}
+  {
+      $data = ['one','two','three','four','five'];
+      return view('hello.index',['data'=>$data]);
+  }
 }
