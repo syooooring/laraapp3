@@ -10,7 +10,9 @@ class HelloController extends Controller
   
    public function index()
 {
-    $date = ['msg'=>'これはコントローラから渡されたメッセージです'];
+    $date = ['msg'=>'これはコントローラから渡されたメッセージです',
+             'id'=>$id
+    ];
     return view('hello.index', $date);
 }
 }
