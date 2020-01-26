@@ -5,10 +5,10 @@ use Illuminate\View\View;
 
 class HelloComposer
 {
-
-    public function composer(View $view)
-    {
-        $view->with('view_message', 'this view is "'
-              . $view->getName() . '"!!');
-    }
+  
+   public function compose(View $view)
+   {
+       $view->with('view_message', 'this view is "' 
+            . $view->getName() . '"!!');
+   }
 }
