@@ -26,14 +26,21 @@ class HelloController extends Controller
 
     public function post(Request $request)
     {
-        $validate_rule = [
-            'msg' => 'required',
+        $items = DB::select('select * form people');
+        return view('hello.index',['items' => $items]);
+    }
+
+    public function add(Request $request)
+    {
+        return view('hello.add');
+    }
+
+    public function create(Request $request)
+    {
+        $param = [
+            'name' => $request->name,
         ];
-        $this->validate($request, $validate_rule);
-        $msg = $request->msg;
-        $response = new Response(view('hello.index', ['msg'=>
-                '「' . $msg . '」をクッキーに保存しました。']));
-        $response->cookie('msg', $msg, 100);
-        return $response;
+        DB::insert('insert into people (name) values  (:name)', $param);
+        return redirect('/hello');
     }
 }
