@@ -12,10 +12,10 @@ class HelloController extends Controller
 {
   
     public function index(Request $request)
-    {
-        $items = DB::table('people')->get();
-        return view('hello.index', ['items'=> $items]);
-    }
+{
+   $items = DB::table('people')->orderBy('name', 'asc')->get();
+   return view('hello.index', ['items' => $items]);
+}
 
     public function post(Request $request)
     {
@@ -69,9 +69,12 @@ class HelloController extends Controller
     }
 
     public function show(Request $request)
-    {
-        $id = $request->id;
-        $item = DB::table('people')->where('id', '<=', $id)->get();
-        return view('hello.show', ['item' => $item]);
-    }
+{
+   $min = $request->min;
+   $max = $request->max;
+   $items = DB::table('people')
+       ->whereRaw('age >= ? and age <= ?',
+        [$min, $max])->get();
+   return view('hello.show', ['items' => $items]);
+}
 }
