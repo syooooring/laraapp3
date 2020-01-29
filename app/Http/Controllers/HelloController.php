@@ -33,7 +33,7 @@ class HelloController extends Controller
         $param = [
             'name' => $request->name,
         ];
-        DB::insert('insert into people (name) values  (:name)', $param);
+        DB::table('people')->insert($param);
         return redirect('/hello');
     }
 
