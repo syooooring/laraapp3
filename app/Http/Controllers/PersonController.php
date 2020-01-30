@@ -38,6 +38,7 @@ class PersonController extends Controller
         $person = new Person;
         $form = $request->all();
         unset($form['_token']);
+        $person->timestamps = false;
         $person->fill($form)->save();
         return redirect('/person');
     }
